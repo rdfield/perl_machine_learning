@@ -1,4 +1,4 @@
-# download the MNIST data from http://yann.lecun.com/exdb/mnist/ and uncomress the files into the $ENV{HOME}/MNIST directory
+# download the MNIST data from http://yann.lecun.com/exdb/mnist/ and uncomress the files into the $Bin/MNIST directory
 package ML::MNIST;
 use Modern::Perl; 
 use Data::Dumper;
