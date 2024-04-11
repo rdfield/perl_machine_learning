@@ -2,12 +2,13 @@
 package ML::MNIST;
 use Modern::Perl; 
 use Data::Dumper;
+use FindBin qw( $Bin );
 use lib '.';
 
-my $MNIST_TRAIN_DATA = "$ENV{HOME}/MNIST/train-images-idx3-ubyte";
-my $MNIST_TRAIN_LABELS = "$ENV{HOME}/MNIST/train-labels-idx1-ubyte";
-my $MNIST_TEST_DATA = "$ENV{HOME}/MNIST/t10k-images-idx3-ubyte";
-my $MNIST_TEST_LABELS = "$ENV{HOME}/MNIST/t10k-labels-idx1-ubyte";
+my $MNIST_TRAIN_DATA = "$Bin/MNIST/train-images-idx3-ubyte";
+my $MNIST_TRAIN_LABELS = "$Bin/MNIST/train-labels-idx1-ubyte";
+my $MNIST_TEST_DATA = "$Bin/MNIST/t10k-images-idx3-ubyte";
+my $MNIST_TEST_LABELS = "$Bin/MNIST/t10k-labels-idx1-ubyte";
 
 sub new {
    my $class = shift;
