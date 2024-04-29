@@ -19,3 +19,6 @@ A Perl version of nn.py.  Painfully slow, taking 40 minutes per Epoch.  Same acc
 
 ## nn_1_pdl.pl
 Updated from nn_1.pl to use PDL for Matrix manipulation.  About twice as fast as nn_1.pl, taking about 20 minutes per epoch.  95% accuracy.  Run with `perl nn_1_pdl.pl`.
+
+## nn_1_cuda_c.pl
+Updated from nn_1.pl to use CUDA for Matrix manipulation.  Takes 6 **seconds** per epoch.  95% accuracy.  Run with `perl nn_1_cuda_c.pl`.  Requires the Perl module Inline::CUDA (and all of its prerequistites - see [Inline::CUDA](https://github.com/hadjiprocopis/perl-inline-cuda) ) to be installed.
