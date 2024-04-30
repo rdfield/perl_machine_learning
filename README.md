@@ -22,3 +22,29 @@ Updated from nn_1.pl to use PDL for Matrix manipulation.  About twice as fast as
 
 ## nn_1_cuda_c.pl
 Updated from nn_1.pl to use CUDA for Matrix manipulation.  Takes 6 **seconds** per epoch.  95% accuracy.  Run with `perl nn_1_cuda_c.pl`.  Requires the Perl module Inline::CUDA (and all of its prerequistites - see [Inline::CUDA](https://github.com/hadjiprocopis/perl-inline-cuda) ) to be installed.
+
+## ROCm version on its way...
+Some notes about getting ROCm to work on Debian 12:
+* uninstall all \*rocm\* packages if installed from a Debian repo (cmake is broken and can't find its config file)
+* down load and *apt install* [amdgpu-installer](http://repo.radeon.com/amdgpu-install/latest/ubuntu/focal/amdgpu-install_6.1.60100-1_all.deb) - this is the Ubuntu 20.04 installer
+* amdgpu-installer won't work out of the box, and needs a specific version of Python, 3.10.  After trying to install 3.10 via [pyenv](https://github.com/pyenv/pyenv), turns out the static version of Python is needed:
+  * https://snapshot.debian.org/archive/debian/20210325T142914Z/pool/main/m/mpdecimal/libmpdec3_2.5.1-2_amd64.deb
+  * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10-minimal_3.10.10-1_amd64.deb
+  * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10-stdlib_3.10.10-1_amd64.deb
+  * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10_3.10.10-1_amd64.deb
+* Download and install all of these .deb files manually (apt install <localfilename>)
+* Try running amdgpu-installer again
+* Fails with DKMS not found
+* *dpkg-reconfigure amdgpu-dkms* fixes the problem
+* add any non-root user to the video and render groups: usermod -a -G render,video <user>
+* reboot
+
+Download the samples from [ROCm examples](https://github.com/ROCm/rocm-examples), and to test cd to the (for example) matrix-multiplication directory and run
+* cmake -S . -B build
+* cmake --build build
+* cmake --install build --prefix install
+* cd install/bin
+* (in another terminal window run something like: watch -n 1 -c rocm-smi)
+* ./hip_matrix_multiplication
+* you will see the Power and SCLK values change in rocm-smi to show activity on the GPU.
+  
