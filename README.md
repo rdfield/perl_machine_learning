@@ -32,20 +32,20 @@ Some notes about getting ROCm to work on Debian 12:
   * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10-minimal_3.10.10-1_amd64.deb
   * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10-stdlib_3.10.10-1_amd64.deb
   * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10_3.10.10-1_amd64.deb
-* Download and install all of these .deb files manually (apt install <localfilename>)
+* Download and install all of these .deb files manually (`apt install libmpdec3_2.5.1-2_amd64.deb libpython3.10-minimal_3.10.10-1_amd64.deb libpython3.10-stdlib_3.10.10-1_amd64.deb libpython3.10_3.10.10-1_amd64.deb`)
 * Try running amdgpu-installer again
 * Fails with DKMS not found
-* *dpkg-reconfigure amdgpu-dkms* fixes the problem
+* `dpkg-reconfigure amdgpu-dkms` fixes the problem
 * add any non-root user to the video and render groups: usermod -a -G render,video <user>
 * reboot
 
 Download the samples from [ROCm examples](https://github.com/ROCm/rocm-examples), and to test cd to the (for example) matrix-multiplication directory and run
-* cmake -S . -B build
-* cmake --build build
-* cmake --install build --prefix install
-* cd install/bin
-* (in another terminal window run something like: watch -n 1 -c rocm-smi)
-* ./hip_matrix_multiplication
+* `cmake -S . -B build`
+* `cmake --build build`
+* `cmake --install build --prefix install`
+* `cd install/bin`
+* (in another terminal window run something like: `watch -n 1 -c rocm-smi`)
+* `./hip_matrix_multiplication`
 * you will see the Power and SCLK values change in rocm-smi to show activity on the GPU.
 
-After ROCm is installed and working, compile the code in the amd_kernel directory (kernels.hip).  Then run perl nn_1_rocm_c.pl.  Takes about 1 minute per epoch running on RX6900XT with Ryzen 5 3600 CPU.
+After ROCm is installed and working, compile the code in the amd_kernel directory (kernels.hip).  Then run `perl nn_1_rocm_c.pl`.  Takes about 1 minute per epoch running on RX6900XT with Ryzen 5 3600 CPU.
