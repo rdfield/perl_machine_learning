@@ -1,0 +1,28 @@
+typedef struct node {
+    int input_size;
+    int output_size;
+    struct node * next;
+    struct node * prev;
+    float *host_Bias;
+    float *device_Bias;
+    float *host_Bias_Derivative;
+    float *device_Bias_Derivative;
+    float *host_Weights_Derivative;
+    float *device_Weights_Derivative;
+//    SV *perl_Bias;
+    float *host_Weights;
+    float *device_Weights;
+//    SV *perl_Weights;
+    float *host_Output;
+    float *device_Output;
+    float *host_Activated_Output;
+    float *device_Activated_Output;
+    float *host_Activated_Output_Derivative;
+    float *device_Activated_Output_Derivative;
+    float *host_Activated_Output_Transposed;
+    float *device_Activated_Output_Transposed;
+    float *host_Weights_Transposed;
+    float *device_Weights_Transposed;
+    float *host_Delta;
+    float *device_Delta;
+} node_t;
