@@ -5,8 +5,8 @@ Developed and tested on Debian.
 
 # Prerequisites
 
-* CPAN modules from Debian repositories - `apt install pdl libfile-slurp-perl libjson-perl libmath-random-perl libmodern-perl-perl`
-* Other CPAN modules - `cpan install Math::Matrix`
+* CPAN modules from Debian repositories - `apt install pdl libfile-slurp-perl libjson-perl libmath-random-perl libmodern-perl-perl `
+* Other CPAN modules - `cpan install Math::Matrix Inline::CPP`
 * Create a directory called MNIST and download and uncompress the MNIST data - download from [MNIST repository](http://yann.lecun.com/exdb/mnist/)
 
 # 1 Hidden Layer Neural Networks
