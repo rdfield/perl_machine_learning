@@ -21,9 +21,9 @@ A Perl version of nn.py.  Painfully slow, taking 40 minutes per Epoch.  Same acc
 Updated from nn_1.pl to use PDL for Matrix manipulation.  About twice as fast as nn_1.pl, taking about 20 minutes per epoch.  95% accuracy.  Run with `perl nn_1_pdl.pl`.
 
 ## nn_1_cuda_c.pl
-Updated from nn_1.pl to use CUDA for Matrix manipulation.  Takes 6 **seconds** per epoch.  95% accuracy.  Run with `perl nn_1_cuda_c.pl`.  Requires the Perl module Inline::CUDA (and all of its prerequistites - see [Inline::CUDA](https://github.com/hadjiprocopis/perl-inline-cuda) ) to be installed.
+Updated from nn_1.pl to use CUDA for Matrix manipulation.  Takes 6 **seconds** per epoch, running on RTX3060 with Ryzen 5 3600 CPU.  95% accuracy.  Run with `perl nn_1_cuda_c.pl`.  Requires the Perl module Inline::CUDA (and all of its prerequistites - see [Inline::CUDA](https://github.com/hadjiprocopis/perl-inline-cuda) ) to be installed.
 
-## ROCm version on its way...
+## nn_1_rocm_c.pl
 Some notes about getting ROCm to work on Debian 12:
 * uninstall all \*rocm\* packages if installed from a Debian repo (cmake is broken and can't find its config file)
 * down load and *apt install* [amdgpu-installer](http://repo.radeon.com/amdgpu-install/latest/ubuntu/focal/amdgpu-install_6.1.60100-1_all.deb) - this is the Ubuntu 20.04 installer
@@ -47,4 +47,5 @@ Download the samples from [ROCm examples](https://github.com/ROCm/rocm-examples)
 * (in another terminal window run something like: watch -n 1 -c rocm-smi)
 * ./hip_matrix_multiplication
 * you will see the Power and SCLK values change in rocm-smi to show activity on the GPU.
-  
+  .
+After ROCm is installed and working, compile the code in the amd_kernel directory (kernels.hip).  Then run perl nn_1_rocm_c.pl.  Takes about 1 minute per epoch running on RX6900XT with Ryzen 5 3600 CPU.
