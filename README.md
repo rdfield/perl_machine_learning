@@ -47,5 +47,5 @@ Download the samples from [ROCm examples](https://github.com/ROCm/rocm-examples)
 * (in another terminal window run something like: watch -n 1 -c rocm-smi)
 * ./hip_matrix_multiplication
 * you will see the Power and SCLK values change in rocm-smi to show activity on the GPU.
-  .
+
 After ROCm is installed and working, compile the code in the amd_kernel directory (kernels.hip).  Then run perl nn_1_rocm_c.pl.  Takes about 1 minute per epoch running on RX6900XT with Ryzen 5 3600 CPU.
