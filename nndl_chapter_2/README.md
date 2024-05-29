@@ -1,6 +1,7 @@
 Updated from the nndl_chapter_1 scripts to run mini batches in a single pass, rather than 1 activation at a time.
 
 CUDA now runs one epoch in 1.1s
+
 ROCM now runs one epoch in 8.5s
 
 Accuracy still ~ 95%
