@@ -806,12 +806,9 @@ sub validation_feedforward {
       push @y, $input->[1];
       $elements++;
    }
-say "loading input";
    return unless load_input(\@x, $elements);
-say "loading target";
    return unless load_target(\@y);
    # run the forward pass of the network
-say "running feed_forward";
    run_feed_forward();
    my $last_activated_output = [];
    get_last_activated_output($last_activated_output) ;
