@@ -18,7 +18,7 @@ Installing and pre-requisites as per the chapter 1 README.
 
 Notes on converting non MNIST images of handwritten digits to a compatible format:
 
-1. image with some handwritten digits - numbers.jpg
+1. image with some handwritten digits - numbers.jpg (copied from https://github.com/arijits148/Handwritten-Digit-Recognition/blob/master/numbers.jpg )
 2. used `gthumb` to crop each digit to its own file, resize to 28x28, convert to greyscale and invert the image - producing the number_`<x>`.jpg files
 3. ran convert number_`<x>`.jpg number_`<x>`.txt to generate a file with 1 line per pixel showing the RGB value for each pixel
 4. ran `perl convert_rgb_to_greyscale.pl number_<x>.txt` to output file called number_`<x>`.dat with 1 byte per pixel (the original image did not have a perfectly white background, so a "filter" was applied in the script where every value below 59 was squashed to 0).
