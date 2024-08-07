@@ -26,17 +26,18 @@ Updated from nn_1.pl to use CUDA for Matrix manipulation.  Takes 6 **seconds** p
 ## nn_1_rocm_c.pl
 Some notes about getting ROCm to work on Debian 12:
 * uninstall all \*rocm\* packages if installed from a Debian repo (cmake is broken and can't find its config file)
-* down load and *apt install* [amdgpu-installer](http://repo.radeon.com/amdgpu-install/latest/ubuntu/focal/amdgpu-install_6.1.60100-1_all.deb) - this is the Ubuntu 20.04 installer
+* Install the Ubuntu 20.04 ROCm version 6.1 [instructions](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.1.0/how-to/amdgpu-install.html)
 * amdgpu-installer won't work out of the box, and needs a specific version of Python, 3.10.  After trying to install 3.10 via [pyenv](https://github.com/pyenv/pyenv), turns out the static version of Python is needed:
   * https://snapshot.debian.org/archive/debian/20210325T142914Z/pool/main/m/mpdecimal/libmpdec3_2.5.1-2_amd64.deb
   * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10-minimal_3.10.10-1_amd64.deb
   * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10-stdlib_3.10.10-1_amd64.deb
   * https://snapshot.debian.org/archive/debian/20230223T205901Z/pool/main/p/python3.10/libpython3.10_3.10.10-1_amd64.deb
 * Download and install all of these .deb files manually (`apt install libmpdec3_2.5.1-2_amd64.deb libpython3.10-minimal_3.10.10-1_amd64.deb libpython3.10-stdlib_3.10.10-1_amd64.deb libpython3.10_3.10.10-1_amd64.deb`)
-* Try running amdgpu-installer again
+* Try running `amdgpu-install --usecase=dkms` again
 * Fails with DKMS not found
 * `dpkg-reconfigure amdgpu-dkms` fixes the problem
-* add any non-root user to the video and render groups: usermod -a -G render,video <user>
+* add any non-root user to the video and render groups: `usermod -a -G render,video <user>`
+* If it didn't work the first time, run `aptgpu-install --usecase=rocm` again
 * reboot
 
 Download the samples from [ROCm examples](https://github.com/ROCm/rocm-examples), and to test cd to the (for example) matrix-multiplication directory and run
